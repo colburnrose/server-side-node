@@ -1,0 +1,16 @@
+{
+  "name": "intro-to-node-and-npm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "play": "clake"
+  },
+  "author": "Colburn Sanders",
+  "license": "ISC",
+  "dependencies": {
+    "clake": "^1.0.1",
+    "debug": "^4.3.1"
+  }
+}
