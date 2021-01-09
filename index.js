@@ -1,5 +1,6 @@
 const fs = require("fs");
+const { animateString } = require("./animate-string");
 
 const contents = fs.readdirSync("./animals");
 
-console.log(contents);
+animateString(contents.join("\n"));

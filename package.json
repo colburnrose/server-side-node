@@ -10,6 +10,7 @@
   "author": "Colburn Sanders",
   "license": "ISC",
   "dependencies": {
+    "chalk-animation": "^1.6.0",
     "clake": "^1.0.1",
     "debug": "^4.3.1"
   }
