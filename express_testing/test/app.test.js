@@ -35,10 +35,47 @@ describe("GET /generate", () => {
         // make sure to get the array
         expect(res.body.initial).to.be.an("array");
         // array must not be empty
-        expect(res.body.initial).to.have.lengthOf.at.least(5);
+        expect(res.body.initial).to.have.lengthOf.at.least(1);
         // the assertion fails
-        // expect(res.body).to.eql([1, 2, 3, 4, 5]);
-        expect(res.body).to.include([]);
+        expect(res.body).to.include.members([1, 2, 3, 4, 5]);
       });
+  });
+
+  describe("GET /frequency", (req, res) => {
+    // query
+    const { s } = req.query;
+
+    if (!s) {
+      return res.status(400).send("Invalid request!");
+    }
+
+    const counts = s
+      .toLowerCase()
+      .split("")
+      .reduce((acc, curr) => {
+        if (acc[curr]) {
+          acc[curr]++;
+        } else {
+          acc[curr] = 1;
+        }
+        return acc;
+      }, {});
+
+    const unique = Object.keys(counts).length;
+    const average = s.length / unique;
+    let highest = "";
+    let highestVal = 0;
+
+    Object.keys(counts).forEach((k) => {
+      if (counts[k] > highestVal) {
+        highestVal = counts[k];
+        highest = k;
+      }
+    });
+
+    counts.unique = unique;
+    counts.average = average;
+    counts.highest = highest;
+    res.json(counts);
   });
 });
